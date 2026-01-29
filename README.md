@@ -43,3 +43,26 @@ Execute the main script:
 python main.py
 ```
 This will run through a sequence of normal operation, outage simulation, fail-fast behavior, and recovery.
+
+## Example Logs
+Below is an excerpt from `app_errors.log` showing the ElevenLabs 503 scenario and subsequent recovery:
+
+```log
+2026-01-29 14:51:30,845 - AI_Call_Agent - INFO - --- Processing call for: Bob ---
+2026-01-29 14:51:30,845 - retry.strategy - WARNING - Transient error in ElevenLabs: ElevenLabs 503 Service Unavailable. Retrying in 5.39s
+2026-01-29 14:51:36,237 - retry.strategy - WARNING - Transient error in ElevenLabs: ElevenLabs 503 Service Unavailable. Retrying in 10.40s
+2026-01-29 14:51:46,635 - retry.strategy - ERROR - Max retry attempts (3) reached for ElevenLabs
+2026-01-29 14:51:46,637 - circuit_breaker.breaker - ERROR - Circuit for ElevenLabs opened!
+2026-01-29 14:51:46,639 - alerts.email_provider - INFO - [Alert] Sending Email to admin@example.com: Service Degradation - Failed to recover ElevenLabs for Bob.
+2026-01-29 14:51:46,640 - AI_Call_Agent - INFO - SKIPPING: Bob and moving to next contact.
+...
+2026-01-29 14:51:58,652 - circuit_breaker.breaker - INFO - Circuit for ElevenLabs moving to HALF_OPEN (timeout elapsed: 12.0s)
+2026-01-29 14:51:58,653 - circuit_breaker.breaker - INFO - Circuit for ElevenLabs reset to CLOSED after successful probe
+2026-01-29 14:51:58,653 - AI_Call_Agent - INFO - SUCCESS: Call completed for David
+```
+
+## Resilience and Maintainability Decisions
+- **Decoupled Alerting**: The `AlertManager` uses a provider pattern, making it easy to add Slack or PagerDuty in the future.
+- **Circuit Registry**: Ensures that circuit states are consistent across different call processing instances.
+- **Config-Driven**: Changing the business logic (e.g., retrying 5 times instead of 3) requires zero code changes, only config updates.
+- **Fail-Fast**: Critically avoids wasting expensive LLM or CRM API calls when a core dependency like ElevenLabs is known to be down.

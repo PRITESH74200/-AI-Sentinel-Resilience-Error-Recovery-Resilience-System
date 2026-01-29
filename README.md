@@ -44,6 +44,13 @@ python main.py
 ```
 This will run through a sequence of normal operation, outage simulation, fail-fast behavior, and recovery.
 
+## Evidence & Verification
+Detailed execution logs, architecture diagrams, and simulation summaries can be found in the [evidence/](evidence/) folder.
+- [Simulation Output](evidence/simulation_output.txt)
+- [Log Snapshot](evidence/app_errors_snapshot.log)
+- [Architecture Diagram](evidence/architecture_diagram.txt)
+- [Evidence Summary](evidence/SUMMARY.md)
+
 ## Example Logs
 Below is an excerpt from `app_errors.log` showing the ElevenLabs 503 scenario and subsequent recovery:
 

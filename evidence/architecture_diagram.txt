@@ -1,0 +1,31 @@
+AI Call Agent - Resilience Architecture
+=======================================
+
+[ Call Queue ]
+      |
+      v
+[ Call Processor ] <---- [ Config (Retry, CB, Alerts) ]
+      |
+      +-----------------------+-----------------------+
+      |                       |                       |
+      v                       v                       v
+[ LLM Service ]        [ ElevenLabs ]           [ CRM Service ]
+      |                       |                       |
+      +-------+---------------+-------+---------------+
+              |               |               |
+              v               v               v
+      [ Retry Strategy ] --> [ Circuit Breaker ]
+              |               |
+              +---------------+
+                      |
+                      v
+      [ Alert & Log Management ]
+              |
+              +--> [ Local JSON Logs ]
+              +--> [ Google Sheets Mock ]
+              +--> [ Email / Telegram / Webhook Alerts ]
+
+[ Background Health Checker ]
+      |
+      +--> Polls Services
+      +--> Signals Recovery to Circuit Breakers

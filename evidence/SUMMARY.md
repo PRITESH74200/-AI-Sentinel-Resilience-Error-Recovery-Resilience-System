@@ -11,6 +11,7 @@ This folder contains evidence of the system's successful implementation and oper
     - Fail-fast operation during the outage.
     - Health check detection and successful recovery.
 - **[app_errors_snapshot.txt](app_errors_snapshot.txt)**: A snapshot of the structured JSON logs generated during the simulation, showing detailed error categories and service states.
+- **dashboard_screenshot.png**: A visual capture of the Streamlit dashboard during a simulated failure scenario.
 
 ## Key Observations:
 1. **Scenario 1 (Normal)**: Alice's call completed without issues.

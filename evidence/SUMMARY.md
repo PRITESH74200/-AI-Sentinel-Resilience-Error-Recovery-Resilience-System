@@ -10,7 +10,7 @@ This folder contains evidence of the system's successful implementation and oper
     - Circuit breaker state transition to OPEN.
     - Fail-fast operation during the outage.
     - Health check detection and successful recovery.
-- **[app_errors_snapshot.log](app_errors_snapshot.log)**: A snapshot of the structured JSON logs generated during the simulation, showing detailed error categories and service states.
+- **[app_errors_snapshot.txt](app_errors_snapshot.txt)**: A snapshot of the structured JSON logs generated during the simulation, showing detailed error categories and service states.
 
 ## Key Observations:
 1. **Scenario 1 (Normal)**: Alice's call completed without issues.

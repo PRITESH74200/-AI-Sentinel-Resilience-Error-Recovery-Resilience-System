@@ -47,7 +47,7 @@ This will run through a sequence of normal operation, outage simulation, fail-fa
 ## Evidence & Verification
 Detailed execution logs, architecture diagrams, and simulation summaries can be found in the [evidence/](evidence/) folder.
 - [Simulation Output](evidence/simulation_output.txt)
-- [Log Snapshot](evidence/app_errors_snapshot.log)
+- [Log Snapshot](evidence/app_errors_snapshot.txt)
 - [Architecture Diagram](evidence/architecture_diagram.txt)
 - [Evidence Summary](evidence/SUMMARY.md)
 
